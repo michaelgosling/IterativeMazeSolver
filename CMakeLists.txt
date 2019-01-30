@@ -3,4 +3,4 @@ project(IterativeMazeSolver)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(IterativeMazeSolver main.cpp)
+add_executable(IterativeMazeSolver main.cpp MazeStack.cpp MazeStack.h Maze.cpp Maze.h)

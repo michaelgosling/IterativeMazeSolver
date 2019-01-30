@@ -1,6 +1,9 @@
 #include <iostream>
+#include "MazeStack.h"
+#include "Maze.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Maze maze("./mazes/maze.txt");
+    while(true) {}
     return 0;
 }

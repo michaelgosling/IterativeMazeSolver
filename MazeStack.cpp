@@ -3,15 +3,15 @@
 //
 
 #include <iostream>
-#include "MyStack.h"
+#include "MazeStack.h"
 
 /**
  * Constructor
  * @param maxSz Integer representing Max Size of the stack
  */
-MyStack::MyStack(int maxSz) {
+MazeStack::MazeStack(int maxSz) {
     // Allocate new array to hold contents
-    contents = new StackElementT(maxSz);
+    contents = new Position[maxSz];
 
     // if the array is empty, we dont have enough memory
     if (contents == nullptr) {
@@ -27,7 +27,7 @@ MyStack::MyStack(int maxSz) {
 /**
  * Destructor
  */
-MyStack::~MyStack() {
+MazeStack::~MazeStack() {
     // delete array
     delete [] contents;
     contents = nullptr;
@@ -36,31 +36,28 @@ MyStack::~MyStack() {
 }
 
 /**
- * Push an element to the stack
- * @param element StackElementT Stack Element
+ * Push a position to the stack
+ * @param position Position
  */
-void MyStack::push(StackElementT element) {
+void MazeStack::push(Position position) {
     // is stack full? show error and exit
     if (isFull()) {
-        std::cout << "Can't push element on stack: stack is full.\n";
+        std::cout << "Can't push position on stack: stack is full.\n";
         exit(1);
     }
 
     // put info in array, update top
-    contents[++top] = element;
-    /* !! [DEMO NOTE] !!
-     * ++top increments the value, then returns it
-     * top++ would return the value, then increment it */
+    contents[++top] = position;
 }
 
 /**
- * Take an element off the top of the stack and return it
- * @return StackElementT stack element
+ * Take a position off the top of the stack and return it
+ * @return Position
  */
-StackElementT MyStack::pop() {
+Position MazeStack::pop() {
     // if the stack is empty, display error and exit
     if (isEmpty()){
-        std::cout << "Can't pop element from stack: stack is empty\n";
+        std::cout << "Can't pop position from stack: stack is empty\n";
         exit(1);
     }
 
@@ -72,9 +69,9 @@ StackElementT MyStack::pop() {
 
 /**
  * Check if stack is empty
- * @return
+ * @return boolean
  */
-bool MyStack::isEmpty() const {
+bool MazeStack::isEmpty() const {
     // if top is less than 0, we know it's empty
     return top < 0;
 }
@@ -83,7 +80,7 @@ bool MyStack::isEmpty() const {
  * Check if stack is full
  * @return boolean
  */
-bool MyStack::isFull() const {
+bool MazeStack::isFull() const {
     // top is an index so if it's equal to maxSize -1 then the stack is full
     return top == maxSize -1;
 }
