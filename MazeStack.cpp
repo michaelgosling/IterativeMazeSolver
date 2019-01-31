@@ -11,7 +11,7 @@
  */
 MazeStack::MazeStack(int maxSz) {
     // Allocate new array to hold contents
-    contents = new Position[maxSz];
+    contents = new move[maxSz];
 
     // if the array is empty, we dont have enough memory
     if (contents == nullptr) {
@@ -37,33 +37,29 @@ MazeStack::~MazeStack() {
 
 /**
  * Push a position to the stack
- * @param position Position
+ * @param move Position
  */
-void MazeStack::push(Position position) {
+void MazeStack::push(move move) {
     // is stack full? show error and exit
     if (isFull()) {
-        std::cout << "Can't push position on stack: stack is full.\n";
+        std::cout << "Can't push move on stack: stack is full.\n";
         exit(1);
     }
 
     // put info in array, update top
-    contents[++top] = position;
+    contents[++top] = move;
 }
 
 /**
  * Take a position off the top of the stack and return it
  * @return Position
  */
-Position MazeStack::pop() {
+move MazeStack::pop() {
     // if the stack is empty, display error and exit
     if (isEmpty()){
         std::cout << "Can't pop position from stack: stack is empty\n";
         exit(1);
     }
-
-    /* !! [DEMO NOTE] !!
-     * --top decrements the value, then returns it
-     * top-- returns the value, then decrement it */
     return contents[top--];
 }
 

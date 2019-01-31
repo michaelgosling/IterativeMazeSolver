@@ -9,12 +9,15 @@
 Maze::Maze(std::string fileName) {
     std::ifstream file;
     std::string line;
-    int rows = 0;
+    rows = 0;
+    columns = 0;
     // try to read the maze file
     try {
-        file.open("filename");
+        file.open(fileName);
         if (file.is_open()){
             while(getline(file,line)){
+                if (columns == 0)
+                    columns = (unsigned int)line.size();
                 rows++;
             }
             file.clear();
@@ -24,7 +27,7 @@ Maze::Maze(std::string fileName) {
             int row = 0;
             while(getline(file, line)) {
                 char* lineArr = new char[line.size()];
-                for (unsigned long i = 0; i < line.size()-1; i++)
+                for (unsigned long i = 0; i < line.size(); i++)
                     lineArr[i] = line[i];
                 mazeArray[row] = lineArr;
                 row++;
@@ -41,22 +44,19 @@ Maze::~Maze() {
 
 }
 
-int Maze::getNumColumns() {
-    return 0;
+unsigned int Maze::getRows() { return rows; }
+unsigned int Maze::getCols() { return columns;}
+
+char Maze::getPosition(unsigned int row, unsigned int col) {
+    return mazeArray[row][col];
 }
 
-int Maze::getNumRows() {
-    return 0;
-}
-
-char Maze::getPosition() {
-    return 0;
-}
-
-void Maze::setPosition(char) {
-
+void Maze::setPosition(char symbol, int row, int col) {
+    mazeArray[row][col] = symbol;
 }
 
 void Maze::printMaze() {
-
+    for (auto i = 0; i <= rows; i++){
+        std::cout << mazeArray[i] << std::endl;
+    }
 }

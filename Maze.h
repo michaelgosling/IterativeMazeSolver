@@ -7,21 +7,21 @@
 
 #include <string>
 
-enum Direction {
-    North, East, South, West
-};
+enum Direction {North, East, South, West};
 
 class Maze {
 private:
     char** mazeArray;
+    unsigned int rows;
+    unsigned int columns;
 public:
     Maze(std::string fileName);
     ~Maze();
 
-    int getNumColumns();
-    int getNumRows();
-    char getPosition();
-    void setPosition(char);
+    unsigned int getRows();
+    unsigned int getCols();
+    char getPosition(unsigned int row, unsigned int col);
+    void setPosition(char symbol, int row, int col);
     void printMaze();
 };
 

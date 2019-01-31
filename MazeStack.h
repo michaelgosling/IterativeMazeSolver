@@ -5,18 +5,20 @@
 #ifndef ITERATIVEMAZESOLVER_MAZESTACK_H
 #define ITERATIVEMAZESOLVER_MAZESTACK_H
 
-struct Position { int row, col; };
+#include "Maze.h"
+
+struct move { int row, col; Direction direction;};
 
 class MazeStack {
 private:
-    Position *contents;
+    move *contents;
     int top;
     int maxSize;
 public:
     MazeStack(int maxSz);
     ~MazeStack();
-    void push(Position);
-    Position pop();
+    void push(move);
+    move pop();
     bool isEmpty() const;
     bool isFull() const;
 };
