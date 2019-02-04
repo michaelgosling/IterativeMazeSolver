@@ -60,8 +60,7 @@ void Maze::setPosition(char symbol, int row, int col) {
 }
 
 void Maze::printMaze() {
-    for (auto i = 0; i < rows; i++) {
-        std::cout << mazeArray[i];
-    }
-    std::cout << std::endl << std::endl << std::endl;
+    for (auto i = 0; i < rows; i++)
+        std::cout << mazeArray[i] << std::endl;
+
 }
