@@ -27,6 +27,8 @@ public:
     char getPosition(int row, int col);
     void setPosition(char symbol, int row, int col);
     void printMaze();
+
+    void writeToFile(std::string);
 };
 
 

@@ -157,7 +157,7 @@ int main() {
     }
 
 
-    // print solution
-    maze.printMaze();
+    // write to file
+    maze.writeToFile("./mazes/mazeSolution.txt");
     return 0;
 }

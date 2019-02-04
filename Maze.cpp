@@ -62,5 +62,19 @@ void Maze::setPosition(char symbol, int row, int col) {
 void Maze::printMaze() {
     for (auto i = 0; i < rows; i++)
         std::cout << mazeArray[i] << std::endl;
+}
 
+void Maze::writeToFile(std::string fileName) {
+    std::ofstream file;
+    std::string line;
+    try {
+        file.open(fileName);
+        if (file.is_open()) {
+            for (auto i = 0; i < rows; i++)
+                file << mazeArray[i] << std::endl;
+            file.close();
+        }
+    } catch (std::exception e) {
+        std::cout << e.what() << std::endl;
+    }
 }
