@@ -42,9 +42,8 @@ Maze::Maze(std::string fileName) {
 }
 
 Maze::~Maze() {
-    // TODO: Properly delete maze
     for (auto i = columns; i >= 0; i--)
-        delete[] mazeArray[i];
+        mazeArray[i] = nullptr;
     mazeArray = nullptr;
 }
 
