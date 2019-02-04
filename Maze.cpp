@@ -17,9 +17,10 @@ Maze::Maze(std::string fileName) {
         if (file.is_open()){
             while(getline(file,line)){
                 if (columns == 0)
-                    columns = (unsigned int)line.size();
+                    columns = (int) line.size();
                 rows++;
             }
+            columns--; // 1 less column than reported
             file.clear();
             file.seekg(0, std::ios::beg);
             line = "";
@@ -41,13 +42,17 @@ Maze::Maze(std::string fileName) {
 }
 
 Maze::~Maze() {
-
+    // TODO: Properly delete maze
+    for (auto i = columns; i >= 0; i--)
+        delete[] mazeArray[i];
+    mazeArray = nullptr;
 }
 
-unsigned int Maze::getRows() { return rows; }
-unsigned int Maze::getCols() { return columns;}
+int Maze::getRows() { return rows; }
 
-char Maze::getPosition(unsigned int row, unsigned int col) {
+int Maze::getCols() { return columns; }
+
+char Maze::getPosition(int row, int col) {
     return mazeArray[row][col];
 }
 
@@ -56,7 +61,8 @@ void Maze::setPosition(char symbol, int row, int col) {
 }
 
 void Maze::printMaze() {
-    for (auto i = 0; i <= rows; i++){
-        std::cout << mazeArray[i] << std::endl;
+    for (auto i = 0; i < rows; i++) {
+        std::cout << mazeArray[i];
     }
+    std::cout << std::endl << std::endl << std::endl;
 }

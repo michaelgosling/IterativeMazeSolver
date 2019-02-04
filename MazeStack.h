@@ -7,18 +7,23 @@
 
 #include "Maze.h"
 
-struct move { int row, col; Direction direction;};
+struct Move {
+    int row, col;
+    Direction direction, backwards;
+};
 
 class MazeStack {
 private:
-    move *contents;
+    Move *contents;
     int top;
     int maxSize;
 public:
     MazeStack(int maxSz);
     ~MazeStack();
-    void push(move);
-    move pop();
+
+    void push(Move);
+
+    Move pop();
     bool isEmpty() const;
     bool isFull() const;
 };
