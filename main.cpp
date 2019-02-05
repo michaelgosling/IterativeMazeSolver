@@ -6,8 +6,7 @@ bool mazeSolved;
 Direction previousPosition;
 
 void move(char validPath, char charToSet, Maze *maze, MazeStack *stack) {
-    // set starting position
-    maze->setPosition(charToSet, currentRow, currentCol);
+
 
     // check for possible directions
     bool directions[4] = {false, false, false, false}; // 0-3 up down left right
@@ -112,7 +111,7 @@ void move(char validPath, char charToSet, Maze *maze, MazeStack *stack) {
 }
 
 int main() {
-    Maze maze("./mazes/maze.txt");
+    Maze maze("./mazes/mazex.txt");
     MazeStack stack(maze.getRows() * maze.getCols());
     currentRow = 0;
     currentCol = 0;
@@ -134,6 +133,9 @@ int main() {
             endRow = i;
 
 
+    // set starting position
+    maze.setPosition('O', currentRow, currentCol);
+
     // loop until maze is solved
     while (!mazeSolved) {
         move(' ', 'O', &maze, &stack);
@@ -144,15 +146,17 @@ int main() {
     previousPosition = Initial;
     currentCol = 0;
     currentRow = startRow;
+    // set starting position
+    maze.setPosition('#', currentRow, currentCol);
     while (!mazeSolved) {
         move('O', '#', &maze, &cleanupStack);
     }
 
     // replace every N or O with a space
     for (auto i = 0; i < maze.getRows(); i++) {
-        for (auto j = 0; j < maze.getCols(); j++) {
-            if (maze.getPosition(j, i) == 'N' || maze.getPosition(j, i) == 'O')
-                maze.setPosition(' ', j, i);
+        for (auto j = 0; j < maze.getCols() - 1; j++) {
+            if (maze.getPosition(i, j) == 'N' || maze.getPosition(i, j) == 'O')
+                maze.setPosition(' ', i, j);
         }
     }
 

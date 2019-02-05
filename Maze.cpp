@@ -5,6 +5,7 @@
 #include "Maze.h"
 #include <iostream>
 #include <fstream>
+#include <cstring>
 
 Maze::Maze(std::string fileName) {
     std::ifstream file;
@@ -26,10 +27,18 @@ Maze::Maze(std::string fileName) {
             line = "";
             mazeArray = new char*[rows];
             int row = 0;
+            int lineSize;
             while(getline(file, line)) {
-                char* lineArr = new char[line.size()];
-                for (unsigned long i = 0; i < line.size(); i++)
+                if (row == 0) {
+                    lineSize = (int) line.size() - 1;
+                }
+                if (row == rows - 1) {
+                    lineSize++;
+                }
+                char *lineArr = new char[lineSize];
+                for (unsigned long i = 0; i < lineSize; i++)
                     lineArr[i] = line[i];
+
                 mazeArray[row] = lineArr;
                 row++;
             }
