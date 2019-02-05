@@ -21,7 +21,6 @@ Maze::Maze(std::string fileName) {
                     columns = (int) line.size();
                 rows++;
             }
-            columns--; // 1 less column than reported
             file.clear();
             file.seekg(0, std::ios::beg);
             line = "";
@@ -30,10 +29,7 @@ Maze::Maze(std::string fileName) {
             int lineSize;
             while(getline(file, line)) {
                 if (row == 0) {
-                    lineSize = (int) line.size() - 1;
-                }
-                if (row == rows - 1) {
-                    lineSize++;
+                    lineSize = (int) line.size();
                 }
                 char *lineArr = new char[lineSize];
                 for (unsigned long i = 0; i < lineSize; i++)

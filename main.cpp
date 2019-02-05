@@ -162,6 +162,6 @@ int main() {
 
 
     // write to file
-    maze.writeToFile("./mazes/mazeSolution.txt");
+    maze.writeToFile("./mazes/MazeSolution.txt");
     return 0;
 }
