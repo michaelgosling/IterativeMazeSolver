@@ -17,8 +17,16 @@ Maze::Maze(std::string fileName) {
         file.open(fileName);
         if (file.is_open()){
             while(getline(file,line)){
-                if (columns == 0)
-                    columns = (int) line.size();
+                if (columns == 0) {
+                    bool lastColumnFound = false;
+                    int i = (int) line.size();
+                    while (!lastColumnFound) {
+                        i--;
+                        if (line[i] == '+')
+                            lastColumnFound = true;
+                    }
+                    columns = i + 1;
+                }
                 rows++;
             }
             file.clear();
@@ -26,13 +34,9 @@ Maze::Maze(std::string fileName) {
             line = "";
             mazeArray = new char*[rows];
             int row = 0;
-            int lineSize;
             while(getline(file, line)) {
-                if (row == 0) {
-                    lineSize = (int) line.size();
-                }
-                char *lineArr = new char[lineSize];
-                for (unsigned long i = 0; i < lineSize; i++)
+                char *lineArr = new char[columns];
+                for (unsigned long i = 0; i < columns; i++)
                     lineArr[i] = line[i];
 
                 mazeArray[row] = lineArr;

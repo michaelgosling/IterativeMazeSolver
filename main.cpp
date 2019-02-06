@@ -111,7 +111,7 @@ void move(char validPath, char charToSet, Maze *maze, MazeStack *stack) {
 }
 
 int main() {
-    Maze maze("./mazes/mazex.txt");
+    Maze maze("./mazes/maze2.txt");
     MazeStack stack(maze.getRows() * maze.getCols());
     currentRow = 0;
     currentCol = 0;
